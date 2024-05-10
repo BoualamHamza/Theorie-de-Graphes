@@ -1,11 +1,12 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from graph import Graph
-from dijkstra import Dijkstra
+from OrientedGraph import OG
+from Dijkstra import Dijkstra
+
 
 class Visualization:
     def __init__(self):
-        self.graph = Graph()
+        self.graph = OG()
 
     def add_edge(self, u, v, weight):
         self.graph.add_edge(u, v, weight)
@@ -17,7 +18,8 @@ class Visualization:
                 G.add_edge(u, v, weight=weight)
 
         pos = nx.spring_layout(G)
-        nx.draw(G, pos, with_labels=True, node_size=2000, node_color="skyblue", font_size=15, font_weight="bold", arrows=True)
+        nx.draw(G, pos, with_labels=True, node_size=2000,
+                node_color="skyblue", font_size=15, font_weight="bold", arrows=True)
         edge_labels = nx.get_edge_attributes(G, 'weight')
         nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
         plt.show()
@@ -26,10 +28,12 @@ class Visualization:
         if algorithm == 'Dijkstra':
             d = Dijkstra(self.graph)
             distances = d.shortest_path(start_node)
-            print("Shortest distances from node {} using Dijkstra's algorithm:".format(start_node))
+            print("Shortest distances from node {} using Dijkstra's algorithm:".format(
+                start_node))
             print(distances)
         else:
             print("Invalid algorithm!")
+
 
 # Example usage:
 if __name__ == "__main__":
