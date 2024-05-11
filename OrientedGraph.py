@@ -30,4 +30,4 @@ g.add_edge('A', 'C', 3)
 g.add_edge('B', 'C', 2)
 g.add_edge('C', 'D', 7)
 
-print(g)
+print(g.graph['A'].items())
